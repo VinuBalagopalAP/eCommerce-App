@@ -1,35 +1,29 @@
+import 'package:ecommerce_app/screens/product/widget/product_detail_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:shop_app/providers/product_provider.dart';
-import 'package:shop_app/screens/product_detail_screen.dart';
-import 'package:shop_app/screens/product_overview_screen.dart';
 import 'package:provider/provider.dart';
+
+import '../../screens/product/product_overview_screen.dart';
+import './providers/product_provider.dart';
 
 void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (ctx) => Products(),
-      //value: Products(),
+      create: (ctx) => ProductProvider(),
       child: MaterialApp(
-        title: 'MyShop',
-        theme: ThemeData(
-          primarySwatch: Colors.purple,
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: Colors.deepOrange, // Your accent color
-          ),
-          fontFamily: 'Lato',
-        ),
+        title: 'Shop App',
         home: const Scaffold(
           body: ProductOverviewScreen(),
         ),
-        debugShowCheckedModeBanner: false,
         routes: {
-          ProductDetailScreen.routeName: (ctx) => const ProductDetailScreen(),
+          ProductDetailScreen.routeName: (context) =>
+              const ProductDetailScreen(),
         },
+        debugShowCheckedModeBanner: false,
       ),
     );
   }
